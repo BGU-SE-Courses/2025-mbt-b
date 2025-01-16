@@ -8,11 +8,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.NoSuchElementException;
 import java.time.Duration;
-import org.junit.jupiter.api.Assertions.*;
 
 public class StepDefinitions {
 
-    private static final String CHROME_DRIVER_PATH = "C:\\Users\\Ali\\Desktop\\Ae5ot\\2025-mbt-b\\Selenium\\chromedriver.exe";
+    //private static final String CHROME_DRIVER_PATH = "../../../Selenium/chromedriver.exe";
+    private static final String CHROME_DRIVER_PATH = System.getProperty("user.dir") + "/../Selenium/chromedriver.exe";
     private WebDriver driver;
     private WebDriverWait wait;
 
@@ -90,7 +90,7 @@ public class StepDefinitions {
 
     @Then("The comment {string} should appear in the search results")
     public void theCommentShouldAppearInTheSearchResults(String commentText) {
-        WebElement searchResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[1]/a[2]/span[1]")));
+        WebElement searchResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[1]/a[2]/span[1]"))); //***************************************************************
         Assertions.assertNotNull(searchResult, "Comment not found in the search results.");
         Assertions.assertTrue(searchResult.getText().contains(commentText), "Expected comment text not found in the search result.");
     }
@@ -130,7 +130,7 @@ public class StepDefinitions {
         WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[1]/div[1]/input[1]")));
         searchInput.sendKeys(commentText);
         searchInput.sendKeys(Keys.ENTER);
-        WebElement commentLink = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[1]/a[2]/span[1]")));
+        WebElement commentLink = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[1]/a[2]/span[1]"))); //***************************************************************
         Assertions.assertTrue(commentLink.getText().contains(commentText), "Comment not found in the search results.");
         commentLink.click();
     }
